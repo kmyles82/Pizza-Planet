@@ -3,10 +3,10 @@
     <nav class="navbar navbar-toggleable-md navbar-light">
       <a href="/" class="navbar-brand">PIZZA PLANET</a>
       <ul class="navbar-nav">
-          <router-link to="/" tag="li">
+          <router-link :to="{ name: 'homeLink'}" tag="li">
             <a class="nav-link">Home</a>
           </router-link>
-          <router-link to="/menu" tag="li">
+          <router-link :to="{ name: 'menuLink'}" tag="li">
             <a href="" class="nav-link">Menu</a>
           </router-link>
       </ul>
@@ -17,7 +17,9 @@
 <script>
 export default {
   name: "Header",
-  data: () => ({})
+  data: () => ({
+    
+  })
 };
 </script>
 

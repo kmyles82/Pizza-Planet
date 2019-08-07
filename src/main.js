@@ -11,6 +11,7 @@ import Vuetify from 'vuetify/lib'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false
 
 new Vue({

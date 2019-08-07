@@ -69,14 +69,29 @@ import NewPizza from './NewPizza'
 import Login from './Login'
 
 export default {
-  name: "Admin",
+  name: "adminLink",
   components: {
       ppNewPizza: NewPizza,
       ppLogin: Login
   },
   data() {
-    return {};
+    return {
+      // name: 'Kerry'
+    };
+  },
+  beforeRouteLeave (to, from, next) {
+    // ...
+    if(confirm('Have you remember to logout?') === true){
+      next()
+    } else {
+      next(false)
+    }
   }
+  // beforeRouteEnter (to, from, next)  {
+  //   next(vm => {
+      
+  //   });
+  // }
 };
 </script>
 

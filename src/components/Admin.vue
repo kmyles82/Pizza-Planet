@@ -14,9 +14,9 @@
               <th>Remove from menu</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-for="(item, index) in getMenuItems" :key="index">
             <tr>
-              <td>Margherita</td>
+              <td>{{item.name}}</td>
               <td>
                 <button class="btn btn-sm btn-outline-danger">X</button>
               </td>
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <h3>Current orders:</h3>
+        <h3>Current orders: {{numberOfOrders}}</h3>
         <table class="table table-sm">
           <thead class="thead-default">
             <tr>
@@ -86,12 +86,17 @@ export default {
     } else {
       next(false)
     }
-  }
-  // beforeRouteEnter (to, from, next)  {
-  //   next(vm => {
-      
-  //   });
-  // }
+  },
+  //access data from store
+    computed:{
+        getMenuItems(){
+            // return this.$store.state.menuItems
+            return this.$store.getters.getMenuItems
+        },
+        numberOfOrders(){
+          return this.$store.getters.numberOfOrders
+        }
+    }
 };
 </script>
 

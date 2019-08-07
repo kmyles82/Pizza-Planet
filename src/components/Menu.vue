@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+
         <div class="col-sm-12 col-md-6">
             <table class="table table-hover">
                 <thead class="thead-default">
@@ -66,50 +67,7 @@ export default {
         return{
             basket: [],
             basketText: 'Your basket is empty',
-            getMenuItems: {
-                1: {
-                    name: 'Magherita',
-                    discription: 'A delicious tomato based pizza topped with mozzarella',
-                    options: [
-                        {
-                            size: 9,
-                            price: 6.95
-                        },
-                        {
-                            size: 12,
-                            price: 10.95
-                        }
-                    ]
-                },
-                2: {
-                    name: 'Pepperoni',
-                    discription: 'A delicious tomato based pizza topped with mozzarella and pepperoni',
-                    options: [
-                        {
-                            size: 9,
-                            price: 7.95
-                        },
-                        {
-                            size: 12,
-                            price: 12.95
-                        }
-                    ]
-                },
-                3: {
-                    name: 'Ham and Pineapple',
-                    discription: 'A delicious tomato based pizza topped with mozzarella, ham and pineapple',
-                    options: [
-                        {
-                            size: 9,
-                            price: 7.95
-                        },
-                        {
-                            size: 12,
-                            price: 12.95
-                        }
-                    ]
-                }
-            }
+            
         }
     },
     methods:{
@@ -135,6 +93,13 @@ export default {
             this.basket.splice(this.basket.indexOf(item), 1)
         }
     },
+    //access data from store
+    computed:{
+        getMenuItems(){
+            return this.$store.getters.getMenuItems
+        },
+        
+    }
 }
 </script>
 

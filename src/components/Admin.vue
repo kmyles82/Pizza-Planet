@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-sm12 col-md-6">
         <!-- new pizza components -->
+        <pp-new-pizza/>
       </div>
       <div class="col-sm12 col-md-6">
         <h3>Menu</h3>
@@ -57,8 +58,13 @@
 </template>
 
 <script>
+import NewPizza from './NewPizza'
+
 export default {
   name: "Admin",
+  components: {
+      ppNewPizza: NewPizza
+  },
   data() {
     return {};
   }

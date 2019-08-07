@@ -15,12 +15,24 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  },
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'homeLink',
-      component: Home
+      components: {
+        default: Home,
+        "ordering-guide": OrderingGuide,
+        "history": History,
+        "delivery": Delivery
+      }
     },
     , {
       path: '/menu',
@@ -35,7 +47,8 @@ export default new Router({
           path: '/contact',
           name: 'contactLink',
           component: Contact
-        }, , {
+      },
+        {
           path: '/history',
           name: 'historyLink',
           component: History
@@ -53,7 +66,12 @@ export default new Router({
     {
       path: '/admin',
       name: 'adminLink',
-      component: Admin
+      component: Admin,
+      beforeEnter: (to, from, next) => {
+        alert('This page is for authorized users only, please login to continue');
+        next()
+      },
+      
     },
     {
       path: '*',

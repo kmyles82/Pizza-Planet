@@ -47,13 +47,23 @@ export default new Vuex.Store({
       }
     },
     orders: [],
+    currentUser: null,
   },
   mutations: {
     //add pizzas to orders array
     addOrder: (state, orders) => state.orders.push(orders),
+    addUserStatus(state, user) {
+      if (user) {
+        state.currentUser = user;
+      } else {
+        state.currentUser = null
+      }
+    }
   },
   actions: {
-
+    setUser({ commit }, user) {
+      commit('userStatus', user)
+    }
   },
   getters: {
     getMenuItems: state =>  state.menuItems,

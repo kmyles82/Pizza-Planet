@@ -7,6 +7,7 @@ import Contact from './components/Contact.vue'
 import History from './components/History.vue'
 import Delivery from './components/Delivery.vue'
 import Admin from './components/Admin.vue'
+import OrderingGuide from './components/OrderGuide.vue'
 
 Vue.use(Router)
 
@@ -18,38 +19,45 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'homeLink',
       component: Home
     },
     , {
       path: '/menu',
-      name: 'Menu',
+      name: 'menuLink',
       component: Menu
     },
     {
       path: '/about',
-      name: 'About',
-      component: About
-    }
-    , {
-      path: '/contact',
-      name: 'Contact',
-      component: Contact
-    }
-    , {
-      path: '/history',
-      name: 'History',
-      component: History
-    },
-    {
-      path: '/delivery',
-      name: 'Delivery',
-      component: Delivery
+      name: 'aboutLink',
+      component: About,
+      children: [ {
+          path: '/contact',
+          name: 'contactLink',
+          component: Contact
+        }, , {
+          path: '/history',
+          name: 'historyLink',
+          component: History
+        }, {
+          path: '/delivery',
+          name: 'deliveryLink',
+          component: Delivery
+        }, {
+          path: '/ordering-guide',
+          component: OrderingGuide,
+          name: 'orderingLink'
+        }
+      ]
     },
     {
       path: '/admin',
-      name: 'admin',
+      name: 'adminLink',
       component: Admin
-    }
+    },
+    {
+      path: '*',
+      redirect: '/'
+    },
   ]
 })

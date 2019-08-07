@@ -40,9 +40,9 @@
                     <tbody v-for="(item, index) in basket" :key="index">
                         <tr>
                             <td>
-                                <button class="btn btn-sm" type="button">-</button>
+                                <button class="btn btn-sm" type="button" @click="decreaseQuantity(item)">-</button>
                                 <span>{{item.quantity}}</span>
-                                <button class="btn btn-sm" type="button">+</button>
+                                <button class="btn btn-sm" type="button" @click="increaseQuantity(item)">+</button>
                             </td>
                             <td>{{item.name}} {{item.size}}"</td>
                             <td>{{item.price * item.quantity}}</td>
@@ -120,6 +120,19 @@ export default {
                 size: option.size,
                 quantity: 1
             })
+        },
+        increaseQuantity(item){
+            item.quantity++;
+        },
+        decreaseQuantity(item){
+            item.quantity--;
+            
+            if(item.quantity === 0){
+                this.removeFromBasket(item);
+            }
+        },
+        removeFromBasket(item){
+            this.basket.splice(this.basket.indexOf(item), 1)
         }
     },
 }

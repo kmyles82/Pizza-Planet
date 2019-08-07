@@ -49,7 +49,8 @@ export default new Vuex.Store({
     orders: [],
   },
   mutations: {
-
+    //add pizzas to orders array
+    addOrder: (state, orders) => state.orders.push(orders),
   },
   actions: {
 

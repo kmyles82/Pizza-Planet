@@ -19,7 +19,7 @@ export default {
   data: () => ({}),
   methods:{
     goToMenu(){
-      this.$router.push('/menu');
+      this.$router.push({ name: 'menuLink'});
     }
   }
 };

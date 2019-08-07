@@ -2,8 +2,8 @@
     <div class="row">
         <form>
             <div class="form-group">
-                <label for="password">Email Address</label>
-                <input type="password" class="form-control" id="email" placeholder="Enter email">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -27,10 +27,29 @@ export default {
     },
     methods: {
         signIn(){
-            
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            Firebase.auth().signInWithEmailAndPassword(email, password)
+            .catch(error => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+
+                if(errorCode === 'auth/wrong-password'){
+                    alert('Wrong password')
+                }else {
+                    alert(errorMessage)
+                }
+            })
         },
         signOut(){
-
+           Firebase.auth().signOut()
+           .then(() => {
+               alert('Logged Out')
+           })
+           .catch(error => {
+               alert('Error')
+           })
         }
     }
 }

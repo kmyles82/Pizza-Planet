@@ -10,18 +10,18 @@
                         <th>Add to basket</th>
                     </tr>
                 </thead>
-                <tbody  v-for="(pizza, index) in getMenuItems" :key="index">
+                <tbody  v-for="item in getMenuItems" :key="item.key">
                     <tr>
-                        <td><strong>{{pizza.name}}</strong></td>
+                        <td><strong>{{item.name}}</strong></td>
                     </tr>
-                    <tr v-for="(option,index) in pizza.options" :key="index">
+                    <tr v-for="(option,index) in item.options" :key="index">
                         <td>{{option.size}}"</td>
                         <td>{{option.price}}</td>
                         <td>
                             <button 
                                 class="btn btn-success btn-sm btn-outline-success" 
                                 type="button"
-                                v-on:click.prevent="addToBasket(pizza, option)">+</button>
+                                v-on:click.prevent="addToBasket(item, option)">+</button>
                         </td>
                     </tr>
                 </tbody>
@@ -54,7 +54,7 @@
                 <button class="btn btn-success btn-block" @click="addNewOrder">Place Order</button>
             </div>
             <div v-else>
-                <p>{{basketText}}</p> {{$store.state.orders}}
+                <p>{{basketText}}</p> <!-- {{$store.state.orders}} -->
             </div>
         </div>
     </div>
@@ -73,9 +73,9 @@ export default {
         }
     },
     methods:{
-        addToBasket(pizza, option){
+        addToBasket(item, option){
             this.basket.push({
-                name: pizza.name,
+                name: item.name,
                 price: option.price,
                 size: option.size,
                 quantity: 1
@@ -105,10 +105,13 @@ export default {
     computed:{
         ...mapGetters([
             'getMenuItems'
-        ])
+        ]),
         // getMenuItems(){
         //     return this.$store.getters.getMenuItems
         // },
+        text(){
+            console.log(this.getMenuItems)
+        }
         
     }
 }

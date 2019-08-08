@@ -30,6 +30,7 @@
 <script>
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { dbMenuRef, dbOrdersRef } from './firebaseConfig'
 
 export default {
   name: "App",
@@ -41,7 +42,12 @@ export default {
     return {
       //
     };
-  }
+  },
+   created(){
+     //make sure store is in sync to firebase immediately when page loads
+     this.$store.dispatch('setMenuRef', dbMenuRef);
+     this.$store.dispatch('setOrdersRef', dbOrdersRef);
+   }
 };
 </script>
 

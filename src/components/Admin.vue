@@ -14,11 +14,11 @@
               <th>Remove from menu</th>
             </tr>
           </thead>
-          <tbody v-for="item in getMenuItems" :key="item.key">
+          <tbody v-for="item in getMenuItems" :key="item['.key']">
             <tr>
               <td>{{item.name}}</td>
               <td>
-                <button class="btn btn-sm btn-outline-danger">X</button>
+                <button class="btn btn-sm btn-outline-danger" @click="removeMenuItem(item['.key'])">X</button>
               </td>
             </tr>
           </tbody>
@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-sm-12">
         <h3>Current orders: {{numberOfOrders}}</h3>
-        <table class="table table-sm" v-for="(orders, index) in getOrders" :key="orders.key">
+        <table class="table table-sm" v-for="(orders, index) in getOrders" :key="orders['.key']">
           <thead class="thead-default">
             <tr>
               <th>Item</th>
@@ -41,7 +41,7 @@
             <strong>
               <em>Order Number: {{index + 1}}</em>
             </strong>
-            <button class="btn btn-sm btn-outline-danger">X</button>
+            <button class="btn btn-sm btn-outline-danger ml-2" @click="removeOrderItem(orders['.key'])">X</button>
           </div>
             <tbody>
               <tr v-for="(orderItems,index) in orders" :key="index">
@@ -68,6 +68,7 @@
 import NewPizza from './NewPizza'
 import Login from './Login'
 import { mapGetters} from 'vuex'
+import { dbMenuRef, dbOrdersRef } from '../firebaseConfig';
 
 export default {
   name: "adminLink",
@@ -102,6 +103,14 @@ export default {
         //   return this.$store.getters.numberOfOrders
         // }
     },
+    methods:{
+      removeMenuItem(key){
+        dbMenuRef.child(key).remove();
+      },
+      removeOrderItem(key){
+        dbOrdersRef.child(key).remove();
+      }
+    }
 };
 </script>
 

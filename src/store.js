@@ -52,9 +52,9 @@ export default new Vuex.Store({
   mutations: {
     //add pizzas to orders array
     addOrder: (state, orders) => state.orders.push(orders),
-    addUserStatus(state, user) {
+    userStatus(state, user) {
       if (user) {
-        state.currentUser = user;
+        state.currentUser = user.email;
       } else {
         state.currentUser = null
       }
@@ -68,6 +68,6 @@ export default new Vuex.Store({
   getters: {
     getMenuItems: state =>  state.menuItems,
     numberOfOrders: state => state.orders.length,
-    
+    currentUser: state => state.currentUser,
   }
 })

@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-sm-12">
         <h3>Current orders: {{numberOfOrders}}</h3>
-        <table class="table table-sm">
+        <table class="table table-sm" v-for="(orders, index) in getOrders" :key="index">
           <thead class="thead-default">
             <tr>
               <th>Item</th>
@@ -44,11 +44,11 @@
             <button class="btn btn-sm btn-outline-danger">X</button>
           </div>
             <tbody>
-              <tr>
-                <td>Margherita</td>
-                <td>9"</td>
-                <td>1</td>
-                <td>6.95</td>
+              <tr v-for="(orderItems,index) in orders" :key="index">
+                <td>{{orderItems.name}}</td>
+                <td>{{orderItems.size}}"</td>
+                <td>{{orderItems.quantity}}</td>
+                <td>{{orderItems.price}}</td>
               </tr>
             </tbody>
         </table>
@@ -67,6 +67,7 @@
 <script>
 import NewPizza from './NewPizza'
 import Login from './Login'
+import { mapGetters} from 'vuex'
 
 export default {
   name: "adminLink",
@@ -89,14 +90,18 @@ export default {
   },
   //access data from store
     computed:{
-        getMenuItems(){
-            // return this.$store.state.menuItems
-            return this.$store.getters.getMenuItems
-        },
-        numberOfOrders(){
-          return this.$store.getters.numberOfOrders
-        }
-    }
+      ...mapGetters([
+        'numberOfOrders',
+        'getMenuItems',
+        'getOrders'
+      ])
+        // getMenuItems(){
+        //     return this.$store.getters.getMenuItems
+        // },
+        // numberOfOrders(){
+        //   return this.$store.getters.numberOfOrders
+        // }
+    },
 };
 </script>
 

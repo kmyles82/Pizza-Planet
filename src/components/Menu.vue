@@ -61,13 +61,15 @@
 </template>
 
 <script>
+import { mapGetters} from 'vuex'
+import {dbOrdersRef} from '../firebaseConfig'
+
 export default {
     name: 'Menu',
     data(){
         return{
             basket: [],
             basketText: 'Your basket is empty',
-            
         }
     },
     methods:{
@@ -90,7 +92,8 @@ export default {
             }
         },
         addNewOrder(){
-            this.$store.commit('addOrder', this.basket);
+            // this.$store.commit('addOrder', this.basket);
+            dbOrdersRef.push(this.basket)
             this.basket = [];
             this.basketText = 'Thank you, Your order has been placed.  😇' ;
         },
@@ -100,9 +103,12 @@ export default {
     },
     //access data from store
     computed:{
-        getMenuItems(){
-            return this.$store.getters.getMenuItems
-        },
+        ...mapGetters([
+            'getMenuItems'
+        ])
+        // getMenuItems(){
+        //     return this.$store.getters.getMenuItems
+        // },
         
     }
 }

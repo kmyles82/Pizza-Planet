@@ -2,15 +2,18 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/store'
 import BootstrapVue from 'bootstrap-vue'
 import Vuetify from 'vuetify/lib'
+import Accounting from 'accounting-js'
 
 
 
-
-Vue.use(Vuetify)
-Vue.use(BootstrapVue)
+Vue.filter('currency',(val) => {
+  return Accounting.formatMoney(val)
+});
+Vue.use(Vuetify);
+Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false
 

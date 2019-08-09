@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="row">
+    <section v-if="currentUser">
+      <div class="row">
       <div class="col-sm12 col-md-6">
         <!-- new pizza components -->
         <pp-new-pizza/>
@@ -23,7 +24,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> 
     </div>
     <div class="row">
       <div class="col-sm-12">
@@ -48,13 +49,13 @@
                 <td>{{orderItems.name}}</td>
                 <td>{{orderItems.size}}"</td>
                 <td>{{orderItems.quantity}}</td>
-                <td>{{orderItems.price}}</td>
+                <td>{{orderItems.price | currency}}</td>
               </tr>
             </tbody>
         </table>
       </div>
-      
     </div>
+    </section>
     <hr>
       <div class="row">
           <div class="col-sm-12 col-lg-6">
@@ -94,7 +95,8 @@ export default {
       ...mapGetters([
         'numberOfOrders',
         'getMenuItems',
-        'getOrders'
+        'getOrders',
+        'currentUser'
       ])
         // getMenuItems(){
         //     return this.$store.getters.getMenuItems

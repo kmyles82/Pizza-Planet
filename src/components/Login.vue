@@ -2,7 +2,8 @@
     <div class="row">
         <div>
             <div>
-                <p>Logged in as: {{currentUser}}</p>
+                <p v-if="!currentUser">Please login to continue</p>
+                <p v-else>Logged in as: {{currentUser}}</p>
             </div>
             <form>
             <div class="form-group">
@@ -13,7 +14,7 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password">
             </div>
-            <button class="btn btn-primary" type="button" @click.prevent="signIn">Sign In</button>
+            <button class="btn btn-primary mr-2" type="button" @click.prevent="signIn">Sign In</button>
             <button class="btn btn-danger" type="button" @click.prevent="signOut">Sign Out</button>
         </form>
         </div>
@@ -22,7 +23,7 @@
 
 <script>
 import Firebase from 'firebase'
-import store from '../store'
+import store from '../store/store'
 
 Firebase.auth().onAuthStateChanged((user) => {
     if(user){

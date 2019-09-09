@@ -52,5 +52,15 @@ export default {
 </script>
 
 <style>
+header, footer{
+  background: #eceeef;
+  pad: 40px 0;
+  font-size: 1.2em;
+}
 
+.card{
+  background: #69ab64;
+  margin: 20px 0;
+  border-radius: 0;
+}
 </style>

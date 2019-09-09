@@ -88,7 +88,7 @@ export default {
             item.quantity--;
             
             if(item.quantity === 0){
-                this.removeFromBasket(item);
+                this.removeFromBasket(item); 
             }
         },
         addNewOrder(){

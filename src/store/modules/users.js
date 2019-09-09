@@ -22,7 +22,7 @@ const actions = {
     }
 }
 
-export default {
+export default { 
     state,
     getters,
     mutations,

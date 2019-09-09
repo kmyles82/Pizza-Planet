@@ -12,6 +12,11 @@ import Accounting from 'accounting-js'
 Vue.filter('currency',(val) => {
   return Accounting.formatMoney(val)
 });
+
+Vue.component('global-components', {
+  template: '<div>A global component</div>'
+})
+
 Vue.use(Vuetify);
 Vue.use(BootstrapVue);
 
